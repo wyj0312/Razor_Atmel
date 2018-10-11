@@ -87,6 +87,16 @@ Promises:
 void UserApp1Initialize(void)
 {
  
+  
+  
+   LedOff(WHITE);
+  LedOff(PURPLE);
+  LedOff(BLUE);
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(YELLOW);
+  LedOff(ORANGE);
+  LedOff(RED);
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -117,20 +127,34 @@ Promises:
 */
 void UserApp1RunActiveState(void)
 {
-   LedOff(WHITE);
-  LedOff(PURPLE);
-  LedOff(BLUE);
-  LedOff(CYAN);
-  LedOff(GREEN);
-  LedOff(YELLOW);
-  LedOff(ORANGE);
-  LedOff(RED);
   
   
+  
+  
+  UserApp1_StateMachine();
+
+} /* end UserApp1RunActiveState */
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* Private functions                                                                                                  */
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+
+/**********************************************************************************************************************
+State Machine Function Definitions
+**********************************************************************************************************************/
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Wait for ??? */
+static void UserApp1SM_Idle(void)
+{
+  static  u16  u16BlinkCount=0;  
+ 
   u16BlinkCount++;
   
   
-  if(u16BlinkCount >= 0 && u16BlinkCount <= 2000)
+  if((u16BlinkCount >= 0) && (u16BlinkCount <= 2000))
   {LedPWM(WHITE, LED_PWM_100);
     LedOff(RED);
     LedOn(WHITE);
@@ -160,25 +184,6 @@ void UserApp1RunActiveState(void)
     LedOff(CYAN);
    LedOn(GREEN);
   }
-  UserApp1_StateMachine();
-
-} /* end UserApp1RunActiveState */
-
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-/* Private functions                                                                                                  */
-/*--------------------------------------------------------------------------------------------------------------------*/
-
-
-/**********************************************************************************************************************
-State Machine Function Definitions
-**********************************************************************************************************************/
-
-/*-------------------------------------------------------------------------------------------------------------------*/
-/* Wait for ??? */
-static void UserApp1SM_Idle(void)
-{
-
 } /* end UserApp1SM_Idle() */
     
 
