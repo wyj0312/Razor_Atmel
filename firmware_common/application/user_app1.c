@@ -60,7 +60,7 @@ Variable names shall start with "UserApp1_" and be declared as static.
 static fnCode_type UserApp1_StateMachine;            /* The state machine function pointer */
 //static u32 UserApp1_u32Timeout;                      /* Timeout counter used across states */
 
-
+static u16 u16BlinkCount = 0;
 /**********************************************************************************************************************
 Function Definitions
 **********************************************************************************************************************/
@@ -85,21 +85,21 @@ Requires:
 Promises:
   - 
 */
-void UserApp1Initialize(void)
-{
- 
-  /* If good initialization, set state to Idle */
-  if( 1 )
-  {
-    UserApp1_StateMachine = UserApp1SM_Idle;
-  }
-  else
-  {
-    /* The task isn't properly initialized, so shut it down and don't run */
-    UserApp1_StateMachine = UserApp1SM_Error;
-  }
-
-} /* end UserApp1Initialize() */
+//void UserApp1Initialize(void)
+//{
+// 
+//  /* If good initialization, set state to Idle */
+//  if( 1 )
+//  {
+//    UserApp1_StateMachine = UserApp1SM_Idle;
+//  }
+//  else
+//  {
+//    /* The task isn't properly initialized, so shut it down and don't run */
+//    UserApp1_StateMachine = UserApp1SM_Error;
+//  }
+//
+//} /* end UserApp1Initialize() */
 
   
 /*----------------------------------------------------------------------------------------------------------------------
@@ -118,9 +118,54 @@ Promises:
 */
 void UserApp1RunActiveState(void)
 {
-  UserApp1_StateMachine();
 
-} /* end UserApp1RunActiveState */
+  LedOff(WHITE);
+  LedOff(PURPLE);
+  LedOff(BLUE);
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(YELLOW);
+  LedOff(ORANGE);
+  LedOff(RED);
+  
+  
+  u16BlinkCount++;
+  
+  
+  if(u16BlinkCount >= 0 && u16BlinkCount <= 2000)
+  {LedPWM(WHITE, LED_PWM_100);
+    LedOff(RED);
+    LedOn(WHITE);
+    
+  } 
+  if(u16BlinkCount >= 2000 && u16BlinkCount <= 3000)
+  {LedPWM(PURPLE, LED_PWM_70);
+    LedOff(WHITE);
+   LedOn(PURPLE);
+   
+  }
+  if(u16BlinkCount >= 3000 && u16BlinkCount <= 3500)
+  { LedPWM(BLUE, LED_PWM_50);
+    LedOff(PURPLE);
+    LedOn(BLUE);
+  }
+    
+  if(u16BlinkCount >= 3500 && u16BlinkCount <= 3750)
+  {LedPWM(CYAN, LED_PWM_30);
+    LedOff(BLUE);
+   LedOn(CYAN);
+   
+  
+  } 
+  if(u16BlinkCount >= 3750 && u16BlinkCount <= 3900)
+  {LedPWM(GREEN, LED_PWM_10);
+    LedOff(CYAN);
+   LedOn(GREEN);
+   
+  
+  }
+ }
+/* end UserApp1RunActiveState */
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -134,10 +179,8 @@ State Machine Function Definitions
 
 /*-------------------------------------------------------------------------------------------------------------------*/
 /* Wait for ??? */
-static void UserApp1SM_Idle(void)
-{
 
-} /* end UserApp1SM_Idle() */
+ /* end UserApp1SM_Idle() */
     
 
 /*-------------------------------------------------------------------------------------------------------------------*/
