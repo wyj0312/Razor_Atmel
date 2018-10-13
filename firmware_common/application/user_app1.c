@@ -119,7 +119,7 @@ Promises:
 void UserApp1RunActiveState(void)
 {
   UserApp1_StateMachine();
-
+ LedOff(RED);
 } /* end UserApp1RunActiveState */
 
 
